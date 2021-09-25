@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Study Metarial {% endblock title %}
+{% block main %}
+<header class="masthead"style="background-image: url(https://www.kindpng.com/picc/m/208-2081803_book-villain-exam-study-png-and-vector-image.png)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>BTKIT</h1>
+                    <span class="subheading">This is study material of BTKIT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+
+            {% for ps in sm %}
+            <div class="post-preview">
+                <a href="{% url 'post-detail' ps.id %}">
+                    <h2 class="post-title">{{ps.title}}</h2>
+                    <h3 class="post-subtitle">{{ps.subtitle}}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">{{ps.author.username}}</a>
+                   {{ps.date_posted}}
+                </p>
+            </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+
+{%endfor%}
+
+{% if is_paginated %}
+    {% include "app/_pagination.html" %}
+{% endif %}
+
+    </div>
+</div>
+</div>
+
+
+{% endblock main %}

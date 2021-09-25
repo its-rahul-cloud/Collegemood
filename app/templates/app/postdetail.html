@@ -1,0 +1,97 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block title %} Post Detail{% endblock title %}
+{% block main %}
+
+        <!-- Page Header-->
+        <header class="masthead"style="background-image: url({{post.image.url}})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{post.title}}</h1>
+                            <h2 class="subheading">{{post.subtitle}}</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="{% url 'profile-detail' post.author.id %}">{{post.author.username}}</a>
+                               {{post.date_posted}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                       <p>
+                           {{ post.content|linebreaksbr}}
+                       </p>
+                      
+                      <h6>Pdf attached =</h6><a href="{{post.pdf.url}}">{{post.pdf}}</a> 
+                        <div class="container px-4 px-lg-5" >
+                        {% if request.user == post.author %}
+                        <a class = "btn-danger" href="{% url 'post-delete' post.id %}" >
+                            <button type="submit" 
+                            style="width:120px;height:50px;"  class="btn btn-danger mt-4" value="Delete">Delete</button></a>
+
+                        </div>
+                        {% endif  %}
+                    </div>
+                   
+                    <hr>
+                    <form action="" method="post" novalidate class="shadow p-5">
+                     {% csrf_token %}
+                     {% for fm in form%}
+                     <div class="mb-3">
+                         {{fm.label_tag}} {{fm}} <small class ="text-danger">{{fm.errors |striptags }}</small>
+                      </div>
+                     {% endfor %}
+                     <input type="submit" class="btn btn-primary mt-4" value="Comment">
+                        {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </form>
+                
+                    <div class="container justify-content-center mt-5 border-left border-right">    
+                  
+                        {% for cm in comments %}
+                        <div class="d-flex justify-content-center py-2">
+                           
+                            <div class="second py-2 px-2"> <span class="text1">{{cm.comment|linebreaksbr}}</span>
+                                <div class="d-flex justify-content-between py-1 pt-2">
+                                    <div><img src="{{cm.author.profile.image.url}}" width="46"><span class="text2"><a href="{% url 'profile-detail' cm.author.id %}">{{cm.author.username}} </a> on </span>  <br> 
+                                         <span class="text3">{{cm.date_posted}}</span>
+                                        
+                                
+                                    {% if request.user == cm.author %}
+                                    <a href="{% url 'comment-delete' cm.id %}" >
+                                        <button type="submit" 
+                                        style="width:120px;height:50px;" class="btn btn-danger">Remove</button></a>
+                                    {% endif  %}
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                   
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </article>
+
+
+
+        {% endblock main %}

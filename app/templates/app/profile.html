@@ -1,0 +1,138 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Profile {% endblock title %}
+
+{% block main %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<header class="masthead" style="background-image:url({{profile.image.url}})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+  
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<link href="{%  static 'app/css/profile.css' %}" rel="stylesheet" />
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{profile.image.url}}" alt=""/>
+                     
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                       {{profile.user.username | capfirst}}
+                                    </h5>
+                                   
+                            {% if request.user == profile.user %}
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li >
+                                    <a  id="post-create"  class ="btn btn-primary" data-toggle="tab" href="{% url 'post-create'  %}" role="tab" aria-controls="home" aria-selected="true">Add post</a>
+  
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a  class="profile-edit-btn" name="btnAddMore" value="Edit Profile" href="{% url 'profile_update' profile.id %}"> Edit </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                     
+                            
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{profile.user.username | capfirst}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{profile.user.email}}</p>
+                                            </div>
+                                        </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Location</label>
+                                                </div>
+                                            <div class="col-md-6">
+                                                <p> {{profile.location}}</p>
+                                            </div>
+                                       </div>
+
+
+
+                                       <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Skill</label>
+                                        </div>
+                                    <div class="col-md-6">
+                                        <p> {{profile.skill}}</p>
+                                    </div>
+                               </div>
+
+
+                                       <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Branch Year</label>
+                                        </div>
+                                    <div class="col-md-6">
+                                        <p> {{profile.Branch_Year}}</p>
+                                    </div>
+                               </div>
+                                       
+                                       <div class="row">
+                                        <div class="col-md-6">
+                                            <label>College name</label>
+                                        </div>
+                                    <div class="col-md-6">
+                                        <p> {{profile.college_name}}</p>
+                                    </div>
+                               </div>
+                                       
+                               <div class="row">
+                                <div class="col-md-6">
+                                    <label>Profession</label>
+                                </div>
+                            <div class="col-md-6">
+                                <p> {{profile.profession}}</p>
+                            </div>
+                       </div>
+
+                         </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+
+
+{% endblock main  %}

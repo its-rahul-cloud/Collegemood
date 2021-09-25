@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Post Detail{% endblock title %}
+{% block main %}
+<!-- Page Header-->
+<header class="masthead" style="background-image:url({{comment.post.image.url}})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{comment.post.title}}</h1>
+                    <span class="subheading">{{comment.comment}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<form method="post">{% csrf_token %}
+
+<h3>Are you sure You want to delete Comment?</h3>
+<div class="container" >
+<input style="width:120px;height:50px;" class = "btn btn-danger" type="submit" value="Confirm">
+</input>
+</div>
+</form>
+<div class="container" >
+<input style="width:120px;height:50px;"  class = "btn btn-primary" type="submit" value="Cancle"  hreaf= "{% url 'home' %}"></input>
+</div>
+{%endblock main %}
