@@ -95,7 +95,7 @@ class CommentDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
 
 
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(ListView):
 
     model = Post
     template_name = 'app/home.html'
@@ -118,7 +118,7 @@ class PostListView(LoginRequiredMixin,ListView):
         return context
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin,DetailView):
     model = Post
     template_name = 'app/postdetail.html'
     context_object_name = 'post'

@@ -122,8 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR /'staticfiles'
-MEDIA_URL= '/media/'
-MEDIA_DIR = BASE_DIR /'staticfiles/media'
+MEDIA_URL= '/static/'
+MEDIA_DIR = BASE_DIR /'staticfiles'
 MEDIA_ROOT = MEDIA_DIR
 LOGIN_REDIRECT_URL = '/'
 
