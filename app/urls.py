@@ -18,7 +18,7 @@ urlpatterns = [
     path('studymaterial/',views.StudyMaterialListView.as_view() ,name='SM'),
     path('about/',views.about,name='about'),
 
-#POST DETAILS ,DELETE,EDIT
+    #POST DETAILS ,DELETE,EDIT
     path('post_detail/<int:pk>',views.PostDetailView.as_view(),name  = 'post-detail'),
     path('post_create/',views.PostMakeView.as_view(),name  = 'post-create'),
     path('post_delete/<int:pk>/',views.PostDeleteView.as_view(),name='post-delete'),
