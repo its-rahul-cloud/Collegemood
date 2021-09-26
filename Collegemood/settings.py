@@ -27,6 +27,9 @@ DEBUG = False
 #SECRET_KEY = ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 
+
+#Non production
+#SECRET_KEY = ['SECRET_KEY']
 DEBUG = False
 
 ALLOWED_HOSTS = ['collegemood2.herokuapp.com','localhost']
